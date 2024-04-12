@@ -1,4 +1,6 @@
 ﻿using LojaLanches.Context;
+using LojaLanches.Repositories;
+using LojaLanches.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LojaLanches;
@@ -16,6 +18,9 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddTransient<ILancheRepository, LancheRepository>();
+        services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 
         services.AddControllersWithViews();
     }
