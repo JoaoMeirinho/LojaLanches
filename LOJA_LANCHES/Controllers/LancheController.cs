@@ -1,4 +1,5 @@
 ﻿using LojaLanches.Repositories.Interfaces;
+using LojaLanches.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaLanches.Controllers
@@ -14,9 +15,15 @@ namespace LojaLanches.Controllers
 
         public IActionResult List()
         {
-            ViewData["Titulo"] = "Todos os Lanches";
-            var lanches = _lancheRepository.Lanches();
-            return View(lanches);
+            //ViewData["Titulo"] = "Todos os Lanches";
+            //var lanches = _lancheRepository.Lanches();
+            //return View(lanches);
+
+            var lanchesListViewModel = new LancheListViewModel();
+            lanchesListViewModel.Lanches = _lancheRepository.Lanches;
+            lanchesListViewModel.CategoriaAtual = "Categoria atual";
+
+            return View(lanchesListViewModel);
         }
     }
 }

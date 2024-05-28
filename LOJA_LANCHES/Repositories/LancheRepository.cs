@@ -18,9 +18,9 @@ namespace LojaLanches.Repositories
             return _context.Lanches.FirstOrDefault(l =>  l.LancheId == lancheId);
         }
 
-        public IEnumerable<Lanche> Lanches() => _context.Lanches.Include(c => c.Categoria);
+        public IEnumerable<Lanche> Lanches => _context.Lanches.Include(c => c.Categoria);
 
-        public IEnumerable<Lanche> LanchesPreferidos() => _context.Lanches
+        public IEnumerable<Lanche> LanchesPreferidos => _context.Lanches
             .Where(l => l.IsLanchePreferido)
             .Include(c => c.Categoria);
     }
