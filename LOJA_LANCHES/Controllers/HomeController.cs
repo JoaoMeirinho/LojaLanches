@@ -1,15 +1,30 @@
 ﻿using LojaLanches.Models;
+using LojaLanches.Repositories.Interfaces;
+using LojaLanches.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using System.Diagnostics;
 
 namespace LojaLanches.Controllers
 {
+
     public class HomeController : Controller
     {
 
+        private readonly ILancheRepository _lancheRepository;
+
+        public HomeController(ILancheRepository lancheRepository)
+        {
+            _lancheRepository = lancheRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var homeViewModel = new HomeViewModel
+            {
+                LanchesPreferidos = _lancheRepository.LanchesPreferidos,
+            };
+            return View(homeViewModel);
         }
 
         public IActionResult Demo()
