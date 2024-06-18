@@ -30,9 +30,9 @@ namespace LojaLanches.Controllers
             return View(carrinhoCompraVM);
         }
 
-        public IActionResult AdicionarItemNoCarrinhoCompra(int lanchId)
+        public IActionResult AdicionarItemNoCarrinhoCompra(int lancheId)
         {
-            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lanchId);
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
 
             if(lancheSelecionado != null)
             {
@@ -41,9 +41,9 @@ namespace LojaLanches.Controllers
 
             return RedirectToAction("Index");
         } 
-        public IActionResult RemoverItemNoCarrinhoCompra(int lanchId)
+        public IActionResult RemoverItemNoCarrinhoCompra(int lancheId)
         {
-            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lanchId);
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
 
             if(lancheSelecionado != null)
             {
