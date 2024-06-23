@@ -58,10 +58,15 @@ namespace LojaLanches.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(LoginViewModel registroVM)
+        public async Task<IActionResult> Register(RegisterViewModel registroVM)
         {
             if (ModelState.IsValid)
             {
+                if(registroVM.Password != registroVM.ConfirmPassword)
+                {
+                    this.ModelState.AddModelError("Senha", "As senhas devem ser iguais.");
+                    return View(registroVM);
+                }
                 var user = new IdentityUser { UserName = registroVM.UserName };
                 var result = await _userManager.CreateAsync(user, registroVM.Password);
 
@@ -77,6 +82,14 @@ namespace LojaLanches.Controllers
             }
 
             return View(registroVM);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Clear(); 
+            HttpContext.User = null;
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LojaLanches.ViewModels
 {
-    public class LoginViewModel
+    public class RegisterViewModel
     {
         [Required(ErrorMessage = "Informe o nome")]
         [Display(Name = "Usuário")]
@@ -13,6 +13,10 @@ namespace LojaLanches.ViewModels
         [Display(Name = "Senha")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Informe a senha")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar Senha")]
+        public string ConfirmPassword { get; set; }
         public string ReturnUrl { get; set; }
     }
 }

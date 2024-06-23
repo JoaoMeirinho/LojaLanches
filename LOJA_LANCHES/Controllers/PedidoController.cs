@@ -2,6 +2,7 @@
 using Humanizer.Localisation.TimeToClockNotation;
 using LojaLanches.Models;
 using LojaLanches.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaLanches.Controllers
@@ -17,12 +18,14 @@ namespace LojaLanches.Controllers
             _carrinhoCompra = carrinhoCompra;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Pedido pedido)
         {
